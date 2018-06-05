@@ -1,27 +1,37 @@
 import React from 'react'
-
 class CharacterList extends React.Component {
-  getEpisodeId(character){
-
-    var episodeIds = character.episode.filter(episode => {
-      var newId = episode.match(/[0-9]+$/)
-      console.log(newId[0])
-      
-      return newId[0]
-    })
-    console.log(this.props.allEpisodes, "<== this.props.allEpisodes")
-    this.props.allEpisodes.forEach(episode => {
-      // console.log(episode)
-    })
-
-    return episodeIds
+  constructor(props) {
+    super(props)
+    this.state = {
+      data: [],
+    }
   }
-
-  
-
+  getEpisodeId(character){
+    const episodeList = this.props.allEpisodes
+    const episodeIds = character.episode.map(episode => {
+      return Number(episode.match(/[0-9]+$/)[0])
+    })
+    var finishedProduct = episodeList.filter(episode => {return (episodeIds.includes(episode.id))})
+    this.setState({
+      data: finishedProduct
+    })
+  }
+   episodeFilter (char, episodeList) {
+    return episodeList.filter(episode => {return (episode.id === char)})
+  }
   render () {
     return(
       <section>
+        {this.state.data.map(episode => {
+          return(
+            <ul className='episodeList'>
+              <li className='singleEpisode' key={episode.id}>
+                <small className='name'>{episode.name}</small>
+                <small className='episode'>{episode.episode}</small>
+              </li>
+            </ul>
+          )
+        })}
         <ul id="characters">
         {this.props.characterData.map((character, i) => {
           return(

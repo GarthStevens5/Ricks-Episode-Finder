@@ -1,3 +1,22 @@
+.splash{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.splashTitle{
+  display: flex;
+  justify-content: center;
+}
+
+.description{
+  display: flex;
+  justify-content: center;
+  margin-left: 60px;
+  margin-right: 60px;
+}
+
 header{
   background-color: rgb(35, 245, 245);
   display: flex;
@@ -67,4 +86,15 @@ button{
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.episodeList{
+  display: flex;
+  flex-flow: row;
+}
+
+.singleEpisode{
+  display: flex;
+  flex-flow: row;
+  width: 300px;
 }
